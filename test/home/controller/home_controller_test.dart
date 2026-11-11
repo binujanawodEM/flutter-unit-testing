@@ -32,5 +32,15 @@ void main() {
 
       expect(controller.count, 1);
     });
+
+    test('notifies listeners when the count changes', () {
+      final values = <int>[];
+      controller.addListener(() => values.add(controller.count));
+
+      controller.increment();
+      controller.decrement();
+
+      expect(values, [1, 0]);
+    });
   });
 }
