@@ -1,4 +1,4 @@
-import 'package:counter_unit_test_demo/home/view/home_view.dart';
+import 'package:counter_unit_test_demo/cart/view/cart_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,6 +10,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(title: 'Counter', home: HomeView());
+    return const MaterialApp(title: 'Shopping Cart', home: CartView());
   }
 }

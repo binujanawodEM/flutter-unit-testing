@@ -1,3 +1,4 @@
+/// Product details, with prices stored as whole cents.
 class Product {
   const Product({
     required this.id,
@@ -10,6 +11,7 @@ class Product {
   final int priceInCents;
 }
 
+/// Products available to add to the cart.
 const products = <Product>[
   Product(id: 'coffee', name: 'Coffee', priceInCents: 450),
   Product(id: 'tea', name: 'Tea', priceInCents: 350),

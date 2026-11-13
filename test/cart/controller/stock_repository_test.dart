@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   final repository = InMemoryStockRepository();
 
+  // Confirms every listed product returns a valid non-negative stock count.
   test('every catalogue product has available stock', () async {
     for (final product in products) {
       expect(
@@ -14,6 +15,7 @@ void main() {
     }
   });
 
+  // Confirms requests for products outside the catalogue fail.
   test('unknown products cause an error', () async {
     await expectLater(
       repository.availableQuantity('unknown'),

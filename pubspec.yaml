@@ -1,5 +1,5 @@
 name: counter_unit_test_demo
-description: "A simple Flutter counter app with unit tests."
+description: "A Flutter shopping cart demo focused on unit testing."
 
 
 publish_to: 'none' 

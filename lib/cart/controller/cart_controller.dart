@@ -3,10 +3,12 @@ import 'package:counter_unit_test_demo/cart/model/cart_item.dart';
 import 'package:counter_unit_test_demo/cart/model/product.dart';
 import 'package:flutter/foundation.dart';
 
+/// Indicates that adding a product would exceed its available stock.
 class StockLimitException implements Exception {
   const StockLimitException();
 }
 
+/// Manages cart contents and checks stock before adding products.
 class CartController extends ChangeNotifier {
   CartController(this._stockRepository);
 
@@ -22,6 +24,7 @@ class CartController extends ChangeNotifier {
   int get totalInCents =>
       _items.values.fold(0, (total, item) => total + item.totalInCents);
 
+  /// Adds one item if stock allows, notifying listeners while the check runs.
   Future<void> addProduct(Product product) async {
     _ensureNotLoading();
     _isLoading = true;
@@ -44,6 +47,7 @@ class CartController extends ChangeNotifier {
     }
   }
 
+  /// Removes one unit, deleting the product when its quantity reaches zero.
   void decrementProduct(String productId) {
     _ensureNotLoading();
     final item = _items[productId];
@@ -59,11 +63,13 @@ class CartController extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Removes a product from the cart if it is present.
   void removeProduct(String productId) {
     _ensureNotLoading();
     if (_items.remove(productId) != null) notifyListeners();
   }
 
+  /// Prevents cart changes during a stock check or after disposal.
   void _ensureNotLoading() {
     if (_isDisposed) {
       throw StateError('The cart has been disposed');
